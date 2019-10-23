@@ -10,9 +10,9 @@ import LogIn from './component/LogIn';
 import Browsing from './component/Browsing';
 import CreateAccount from './component/CreateAccount';
 
+
 const ruta = (
     <Router>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <Route exact path = "/" component = {App} />
         <Route path = "/LogIn" component = {LogIn} />
         <Route path = "/CreateAccount" component = {CreateAccount} />

@@ -9,7 +9,6 @@ class Home extends React.Component{
     render(){
         return <div>
         <header><img className="App-logo" src={logoHeader} alt="logoHeader"/></header>
-     
         <section>
    
          <h4>Find your perfect trip, designed by insiders who know and love their cities</h4>
