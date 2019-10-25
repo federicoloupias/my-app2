@@ -9,6 +9,7 @@ import {
 import LogIn from './component/LogIn';
 import Browsing from './component/Browsing';
 import CreateAccount from './component/CreateAccount';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const ruta = (
