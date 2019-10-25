@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './component/Home'; 
-import NavBar from './component/NavBar'
+import NavBar from './component/NavBar';
+
+import StepperPrueba from './component/StepperPrueba.jsx'
 import './App.css';
 
 function App() {
@@ -8,6 +10,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Home />
+      <StepperPrueba />
     </div>
     
   );
