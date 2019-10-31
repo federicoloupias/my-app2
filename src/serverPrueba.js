@@ -14,19 +14,35 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect('mongodb+srv://federicoloupias:senillosa1@flcluster-5vsgj.mongodb.net/FLmytinerary?retryWrites=true&w=majority',{useNewUrlParser:true});
 
-var Schema = mongoose.Schema;
-var citySchema = new Schema({
-    name: String,
-    country: String
-},
-{
-    collection: 'cities'
+
+let CitesModel = require ('./models/city')
+
+let city = new CitesModel({
+    name: 'Paris',
+    country:'Francia'
 })
 
-var cityModel=mongoose.model('cities', citySchema);
+/*city.save()
+    .then(doc => {
+     console.log(doc)
+    })
+    .catch(err => {
+     console.error(err)
+    })*/
+
+    CitesModel.findOneAndRemove({
+    _id:'5dbafcae97bbc307d7b7070e'
+  })
+  .then(response => {
+    console.log(response)
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
 
 app.get('/api/cities', cors(), function(req, res) {
-    cityModel.find()
+    CitesModel.find()
     .then(
         function(datos){
             return res.send(datos)
