@@ -17,10 +17,7 @@ mongoose.connect('mongodb+srv://federicoloupias:senillosa1@flcluster-5vsgj.mongo
 
 let CitesModel = require ('./models/city')
 
-let city = new CitesModel({
-    name: 'Paris',
-    country:'Francia'
-})
+
 
 /*city.save()
     .then(doc => {
@@ -30,7 +27,7 @@ let city = new CitesModel({
      console.error(err)
     })*/
 
-    CitesModel.findOneAndRemove({
+   /* CitesModel.findOneAndRemove({
     _id:'5dbafcae97bbc307d7b7070e'
   })
   .then(response => {
@@ -38,11 +35,27 @@ let city = new CitesModel({
   })
   .catch(err => {
     console.error(err)
-  })
+  })*/
 
 
 app.get('/api/cities', cors(), function(req, res) {
     CitesModel.find()
+    .then(
+        function(datos){
+            return res.send(datos)
+        }
+    )
+    .catch(err =>{
+        console.log(err);
+    })
+})
+
+app.post('/api/cities', cors(), function(req, res) {
+    let newCity = new CitesModel({
+        name: req.body.name,
+        country: req.body.country
+    })
+    newCity.save()
     .then(
         function(datos){
             return res.send(datos)
