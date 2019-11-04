@@ -1,18 +1,22 @@
-import { ADD_ITEM, DELETE_ITEM, GET_ITEMS } from '../actions/types';
+import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADING } from '../actions/types';
 
 const initialState = {
-    items:[
-       { name: "Barcelona", country: "Spain" },
-       { name: "Paris", country: "Francia" },
-       { name: "London", country: "UK" },
-    ]
+    items:[],
+    loading:false
 }
 
 export default function(state = initialState, action){
     switch (action.type) {
         case GET_ITEMS:
             return {
-                ...state
+                ...state,
+                items: action.payload,
+                loading:false
+            };
+        case ITEMS_LOADING:
+            return{
+                ...state,
+                loading: true
             }
     
         default:
