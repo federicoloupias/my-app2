@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, CITIES_FILTER } from './types';
 
-export const getItems = () => dispatch =>{
+export const getItems = () => async dispatch =>{
     dispatch(setItemsLoading());
-    axios
+    await axios
     .get('api/cities')
     .then(res => 
         dispatch({
@@ -13,6 +13,16 @@ export const getItems = () => dispatch =>{
         )
    
 };
+
+export const getFilter = (data) => {
+
+        return{ 
+            type:CITIES_FILTER,
+            payload:data }    
+        
+   
+};
+
 
 export const setItemsLoading = () => {
     return {

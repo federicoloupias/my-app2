@@ -1,9 +1,11 @@
-import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADING } from '../actions/types';
+import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADING,CITIES_FILTER } from '../actions/types';
 
 const initialState = {
     items:[],
+    items_filter:[],
     loading:false
 }
+
 
 export default function(state = initialState, action){
     switch (action.type) {
@@ -11,6 +13,12 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 items: action.payload,
+                loading:false
+            };
+            case CITIES_FILTER:
+            return {
+                ...state,
+                items_filter: action.payload,
                 loading:false
             };
         case ITEMS_LOADING:
