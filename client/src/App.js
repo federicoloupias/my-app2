@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './component/Home'; 
 import CitiesList from './component/CitiesList'
+import Itinerary from './component/Itinerary'
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -13,7 +14,7 @@ function App() {
   return (
     <Provider store = {store}>
       <div className="App">
-        <CitiesList />
+        <Itinerary />
         
       </div>
     </Provider>
