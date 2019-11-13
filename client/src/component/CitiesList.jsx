@@ -5,7 +5,9 @@ import { getItems } from '../actions/itemActions';
 import { getFilter } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
-class ItemList extends Component{
+import {Link} from "react-router-dom";
+
+class CitiesList extends Component{
     constructor() {
         super()
         this.state = {
@@ -49,6 +51,7 @@ class ItemList extends Component{
     render(){
     
         return(
+          
             <div>
             <div>
                 <label htmlFor="filter">Filter by Cities: </label>
@@ -61,8 +64,12 @@ class ItemList extends Component{
             {this.state.filteredCities?
             
         <ListGroup>
-            {this.state.filteredCities.map(({name}) => (
-            <ListGroupItem> {name} </ListGroupItem>
+            {this.state.filteredCities.map((items) => (
+            <ListGroupItem>
+
+            <Link to={"/Cities/".concat(items._id)}> {items.name}</Link> 
+            
+            </ListGroupItem>
             ))}
         </ListGroup>:null
         }
@@ -72,7 +79,7 @@ class ItemList extends Component{
     }
 }
 
-ItemList.propTypes = {
+CitiesList.propTypes = {
     getItems: PropTypes.func.isRequired,
     item: PropTypes.object.isRequired
 }
@@ -83,4 +90,4 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, { getItems, getFilter })(ItemList);
+export default connect(mapStateToProps, { getItems, getFilter })(CitiesList);

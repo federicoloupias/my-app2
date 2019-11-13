@@ -12,12 +12,10 @@ import './App.css';
 
 function App() {
   return (
-    <Provider store = {store}>
       <div className="App">
-        <Itinerary />
+        <Home />
         
       </div>
-    </Provider>
     
   );
 }

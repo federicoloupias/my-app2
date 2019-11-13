@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, CITIES_FILTER } from './types';
+import { GET_ITEMS,ITEMS_LOADING, CITIES_FILTER } from './types';
 
 export const getItems = () => async dispatch =>{
     dispatch(setItemsLoading());

@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADING,CITIES_FILTER } from '../actions/types';
+import { GET_ITEMS, ITEMS_LOADING, CITIES_FILTER } from '../actions/types';
 
 const initialState = {
     items:[],

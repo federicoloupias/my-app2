@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getItems } from '../actions/itineraryActions';
-import PropTypes from 'prop-types';
+import { getItineraries } from '../actions/itineraryActions';
 
 class ItineraryList extends Component{
    
     async componentDidMount() {
-        
-       await this.props.getItems();
-
+      let cityId = this.props.match.params.cityId
+       await this.props.getItineraries(cityId)
     }
 
-
-
     render(){
-      const { itineraries } = this.props.itineraries;
+      // const { itineraries } = this.props.itineraries;
 
         return(
 
         <ListGroup>
-            {itineraries.map(({title}) => (
+            {this.props.itineraries.map(({title}) => (
             <ListGroupItem> {title} </ListGroupItem>
             ))}
         </ListGroup>
@@ -29,15 +25,24 @@ class ItineraryList extends Component{
     }
 }
 
-ItineraryList.propTypes = {
-    getItems: PropTypes.func.isRequired,
-    itineraries: PropTypes.object.isRequired
+// ItineraryList.propTypes = {
+//     getItineraries: PropTypes.func.isRequired,
+//     itineraries: PropTypes.object.isRequired
+// }
+
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    itineraries: state.itinerario.itineraries
+  }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  
+  return {
+    getItineraries: (cityId)=>dispatch(getItineraries(cityId))
+  }
+}
 
-const mapStateToProps = (state) => ({
-  itineraries: state.itineraries
-
-})
-
-export default connect(mapStateToProps, { getItems })(ItineraryList);
+export default connect(mapStateToProps, mapDispatchToProps)(ItineraryList);

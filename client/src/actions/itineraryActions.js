@@ -1,17 +1,17 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, CITIES_FILTER } from './types';
+import { GET_ITINERARIES, ITEMS_LOADING } from './types';
 
-export const getItems = () => async dispatch =>{
-    dispatch(setItemsLoading());
+export const getItineraries = (cityId) => async (dispatch) =>{
     await axios
-    .get('api/itinerary')
-    .then(res => 
+    .get('/api/itinerary/'+cityId)
+    .then(res =>{
+      
         dispatch({
-            type:GET_ITEMS,
+            type:GET_ITINERARIES,
             payload:res.data
         })
-        )
-   
+      })
+      
 };
 
 
