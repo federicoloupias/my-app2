@@ -12,12 +12,16 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(cors())
+
 mongoose.connect('mongodb+srv://federicoloupias:senillosa1@flcluster-5vsgj.mongodb.net/FLmytinerary?retryWrites=true&w=majority',{useNewUrlParser:true});
 
 
 let CitesModel = require ('./models/city')
 
 let ItinerayModel = require ('./models/Itinerary')
+
+let UserModel = require ('./models/user')
 
 
 
@@ -98,6 +102,48 @@ app.get('/api/itinerary', cors(), function(req, res) {
       console.log(err);
   })
 })
+
+
+//-------------------------------------------------------//
+
+// -------------------  Users  --------------------------//
+
+app.get('/api/users', cors(), function(req, res) {
+  UserModel.find()
+  .then(
+      function(datos){
+          return res.send(datos)
+      }
+  )
+  .catch(err =>{
+      console.log(err);
+  })
+})
+
+app.post('/api/users', function(req, res) {
+  console.log(req.body)
+  let newUser = new UserModel({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirmation:req.body.passwordConfirmation
+})
+console.log(newUser)
+newUser.save()
+.then(
+    function(datos){
+        return res.send(datos)
+    }
+)
+.catch(err =>{
+    console.log(err);
+})
+})
+
+
+
+
+//-------------------------------------------------------//
 
 app.listen(8080, function(){
     console.log('servidor escuchando puerto 8080')

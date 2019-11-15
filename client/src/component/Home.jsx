@@ -2,14 +2,13 @@ import React from 'react';
 import logoHeader from './Images/MYtineraryLogo.png';
 import logoButton from './Images/circled-right-2.png';
 import {Link} from "react-router-dom";
-import NavBar from './NavBar';
 import Carousel from './Carousel'
 
 
 class Home extends React.Component{
     render(){
         return <div>
-          <NavBar />
+          
             <header><img className="App-logo" src={logoHeader} alt="logoHeader"/></header>
             <section>
    

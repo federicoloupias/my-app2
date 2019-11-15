@@ -1,13 +1,15 @@
 import React from 'react';
-
+import SignupForm from './SignupForm'
 class CreateAccount extends React.Component{
     render(){
-        return <div>
-        
-           <h1>CreateAccount</h1>
-        
-        </div>;
-    }
+        return( 
+        <div className="row">
+          <div className="col-md-4 col-md-offset-4">
+            <SignupForm />
+          </div>
+        </div>  
+        ) ;
+  }
 }
 
 export default CreateAccount;

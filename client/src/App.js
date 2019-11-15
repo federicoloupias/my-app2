@@ -5,6 +5,7 @@ import Itinerary from './component/Itinerary'
 
 import { Provider } from 'react-redux';
 import store from './store';
+import NavBar from './component/NavBar';
 
 import Carousel from './component/Carousel.jsx'
 import './App.css';
@@ -13,6 +14,7 @@ import './App.css';
 function App() {
   return (
       <div className="App">
+        <NavBar />
         <Home />
         
       </div>
