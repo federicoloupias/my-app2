@@ -9,9 +9,7 @@ class SignupForm extends React.Component{
       users: [] ,
       username: '',
       email:'',
-      password:'',
-      passwordConfirmation:''
-
+      password:''
     }
   
   this.onChange= this.onChange.bind(this)
@@ -35,21 +33,21 @@ class SignupForm extends React.Component{
     const user = {
       username: this.state.username,
       email:this.state.email,
-      password:this.state.password,
-      passwordConfirmation:this.state.passwordConfirmation
+      password:this.state.password
     }
     
-    console.log (user)
-    const res = await axios.post('http://localhost:8080/api/users', user)
-    console.log(res)
+    const res = await axios.post('http://localhost:8080/api/register', user)
+    
+    
 
     this.getUsers()
+
+    console.log(this.state.users)
 
     this.setState({
       username: '',
       email:'',
-      password:'',
-      passwordConfirmation:''
+      password:''
     })
 
 
@@ -95,17 +93,6 @@ class SignupForm extends React.Component{
               />
           </div>
 
-
-          <div className="form-group">
-            <label className="control-label">Password Confirmation</label>
-            <input
-              value= { this.state.passwordConfirmation }
-              onChange= { this.onChange }
-              type="password"
-              name="passwordConfirmation"
-              className="form-control"
-              />
-          </div>
 
           <div className="form-group">
             <button className="btn btn-primary btn-lg">

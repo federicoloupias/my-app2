@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
-    username: {
+    name: {
       type: String,
       required:true
     },
@@ -14,11 +14,8 @@ let userSchema = new Schema({
     password:{
       type: String,
       required:true
-    },
-    passwordConfirmation:{
-      type: String,
-      required:true
     }
+    
     
 },
 {

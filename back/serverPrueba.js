@@ -17,6 +17,13 @@ app.use(cors())
 mongoose.connect('mongodb+srv://federicoloupias:senillosa1@flcluster-5vsgj.mongodb.net/FLmytinerary?retryWrites=true&w=majority',{useNewUrlParser:true});
 
 
+
+var AuthController = require('./AuthController');
+
+app.use('/api/auth', AuthController);
+
+
+
 let CitesModel = require ('./models/city')
 
 let ItinerayModel = require ('./models/Itinerary')
@@ -125,8 +132,7 @@ app.post('/api/users', function(req, res) {
   let newUser = new UserModel({
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
-    passwordConfirmation:req.body.passwordConfirmation
+    password: req.body.password
 })
 console.log(newUser)
 newUser.save()
