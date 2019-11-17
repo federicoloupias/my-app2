@@ -31,13 +31,12 @@ class SignupForm extends React.Component{
     e.preventDefault();
 
     const user = {
-      username: this.state.username,
+      name: this.state.username,
       email:this.state.email,
       password:this.state.password
     }
     
-    const res = await axios.post('http://localhost:8080/api/register', user)
-    
+    const res = await axios.post('http://localhost:8080/api/auth/register', user)
     
 
     this.getUsers()

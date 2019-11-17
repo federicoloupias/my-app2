@@ -115,39 +115,6 @@ app.get('/api/itinerary', cors(), function(req, res) {
 
 // -------------------  Users  --------------------------//
 
-app.get('/api/users', cors(), function(req, res) {
-  UserModel.find()
-  .then(
-      function(datos){
-          return res.send(datos)
-      }
-  )
-  .catch(err =>{
-      console.log(err);
-  })
-})
-
-app.post('/api/users', function(req, res) {
-  console.log(req.body)
-  let newUser = new UserModel({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password
-})
-console.log(newUser)
-newUser.save()
-.then(
-    function(datos){
-        return res.send(datos)
-    }
-)
-.catch(err =>{
-    console.log(err);
-})
-})
-
-
-
 
 //-------------------------------------------------------//
 
