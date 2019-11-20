@@ -22,7 +22,7 @@ const ruta = (
   <Provider store = {store}>
     <Router>
         <Route exact path = "/" component = {App} />
-        <Route path = "/LogIn" component = {LogIn} />
+        <Route exact path = "/LogIn" component = {LogIn} />
         <Route path = "/CreateAccount" component = {CreateAccount} />
         <Route path = "/Browsing" component = {Browsing} />
         <Route exact path = "/Cities" component = {CitiesList} />

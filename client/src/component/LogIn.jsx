@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios'
+import axios from 'axios';
+import {Link} from "react-router-dom";
 
 class LogIn extends React.Component {
   constructor(props){
@@ -69,6 +70,11 @@ console.log(res)
         </FormGroup>
         
         <Button>Submit</Button>
+        <br/>
+        <br/>
+        
+        <Link to="/LogIn/Google"><Button>LogIn with Google</Button></Link>
+        
       </Form>
       </div>
     );

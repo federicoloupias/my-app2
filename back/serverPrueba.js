@@ -66,7 +66,8 @@ app.get('/api/cities', cors(), function(req, res) {
 app.post('/api/cities', cors(), function(req, res) {
     let newCity = new CitesModel({
         name: req.body.name,
-        country: req.body.country
+        country: req.body.country,
+        url: req.body.url
     })
     newCity.save()
     .then(

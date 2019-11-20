@@ -3,7 +3,8 @@ let Schema = mongoose.Schema;
 
 let citySchema = new Schema({
     name: String,
-    country: String
+    country: String,
+    url:String
 },
 {
     collection: 'cities'

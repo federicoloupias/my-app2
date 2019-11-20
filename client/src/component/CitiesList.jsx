@@ -6,13 +6,17 @@ import { getFilter } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 import {Link} from "react-router-dom";
+import { Container } from '@material-ui/core';
+
+
 
 class CitiesList extends Component{
+  
     constructor() {
         super()
         this.state = {
           filteredCities: [],
-          cityFilter: ""
+          cityFilter: "", 
         }
       }
 
@@ -47,12 +51,17 @@ class CitiesList extends Component{
        this.props.getFilter(filteredCities)
       }
 
+       
+        
+     
+
 
     render(){
-    
+      
         return(
           
             <div>
+              <Container>
             <div>
                 <label htmlFor="filter">Filter by Cities: </label>
                 <input type="text" id="filter" 
@@ -65,14 +74,16 @@ class CitiesList extends Component{
             
         <ListGroup>
             {this.state.filteredCities.map((items) => (
-            <ListGroupItem>
-
-            <Link to={"/Cities/".concat(items._id)}> {items.name}</Link> 
+            <ListGroupItem style={{backgroundImage: `url(${items.url})`, backgroundPosition:'center', backgroundSize:'cover', width:'300px',
+            height:'80px',}} key={items._id}>
+            <Link to={"/Cities/".concat(items._id)} style={{color:'white', fontSize:'20px'}}> {items.name}</Link> 
             
             </ListGroupItem>
             ))}
         </ListGroup>:null
         }
+</Container>
+
         </div>
     
         );
