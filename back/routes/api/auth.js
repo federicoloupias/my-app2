@@ -66,7 +66,7 @@ router.post('/', (req,res) => {
 // api/auth
 
 router.get('/user', auth, (req,res) => {
-    console.log(req.user)
+
     User.findById(req.user.is)
         .select('-password')
         .then(user => res.json(user));
