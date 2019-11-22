@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://federicoloupias:senillosa1@flcluster-5vsgj.mongodb.net/FLmytinerary?retryWrites=true&w=majority",
+    "jwtSecret": "myJwtSecret"
+
+}

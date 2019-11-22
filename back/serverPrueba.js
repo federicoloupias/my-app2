@@ -8,19 +8,26 @@ const bodyParser= require('body-parser')
 
 var app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(cors())
+app.use(cors());
 
-mongoose.connect('mongodb+srv://federicoloupias:senillosa1@flcluster-5vsgj.mongodb.net/FLmytinerary?retryWrites=true&w=majority',{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology: true});
+const config = require('config');
+const db = config.get('mongoURI');
+
+mongoose.connect(db,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology: true});
 
 
 
-var AuthController = require('./AuthController');
+//var AuthController = require('./AuthController');
 
-app.use('/api/auth', AuthController);
+//app.use('/api/auth', AuthController);
+
+app.use('/api/users', require ('./routes/api/users'));
+
+app.use('/api/auth', require ('./routes/api/auth'))
 
 
 
@@ -30,6 +37,7 @@ let ItinerayModel = require ('./models/Itinerary')
 
 let UserModel = require ('./models/user')
 
+const users = require ('./routes/api/users')
 
 
 /*city.save()
