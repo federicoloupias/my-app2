@@ -6,7 +6,7 @@ import {
     BrowserRouter as Router,
     Route
   } from "react-router-dom";
-import LogIn from './component/LogIn';
+import LogInRedux from './component/LogInRedux';
 import Browsing from './component/Browsing';
 import CreateAccount from './component/CreateAccount';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,7 +22,7 @@ const ruta = (
   <Provider store = {store}>
     <Router>
         <Route exact path = "/" component = {App} />
-        <Route exact path = "/LogIn" component = {LogIn} />
+        <Route exact path = "/LogIn" component = {LogInRedux} />
         <Route path = "/CreateAccount" component = {CreateAccount} />
         <Route path = "/Browsing" component = {Browsing} />
         <Route exact path = "/Cities" component = {CitiesList} />
