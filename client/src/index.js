@@ -24,7 +24,6 @@ const ruta = (
         <Route exact path = "/" component = {App} />
         <Route exact path = "/LogIn" component = {LogInRedux} />
         <Route path = "/CreateAccount" component = {CreateAccount} />
-        <Route path = "/Browsing" component = {Browsing} />
         <Route exact path = "/Cities" component = {CitiesList} />
         <Route path = "/Cities/:cityId" component = {Itinerary} />
     </Router>

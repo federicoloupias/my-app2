@@ -6,6 +6,7 @@ import Itinerary from './component/Itinerary'
 import { Provider } from 'react-redux';
 import store from './store';
 import NavBar from './component/NavBar';
+import NavBarRedux from './component/NavBarRedux';
 import { loadUser } from './actions/authActions'
 
 import Carousel from './component/Carousel.jsx'
@@ -19,7 +20,7 @@ class App extends Component {
   render(){ 
   return (
       <div className="App">
-        <NavBar />
+        <NavBarRedux />
         <Home />
         
       </div>

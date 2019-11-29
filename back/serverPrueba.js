@@ -37,6 +37,8 @@ let ItinerayModel = require ('./models/Itinerary')
 
 let UserModel = require ('./models/user')
 
+let ActivityModel = require ('./models/activity')
+
 const users = require ('./routes/api/users')
 
 
@@ -122,8 +124,22 @@ app.get('/api/itinerary', cors(), function(req, res) {
 
 //-------------------------------------------------------//
 
-// -------------------  Users  --------------------------//
-
+// -------------------  Activities  --------------------------//
+app.get('/api/activities/:id', cors(), function(req, res) {
+    let itinerary = {
+        itineraryId: req.params.id
+    }
+    
+    ActivityModel.find(itinerary)
+    .then(
+        function(datos){
+            return res.send(datos)
+        }
+    )
+    .catch(err =>{
+        console.log(err);
+    })
+  })
 
 //-------------------------------------------------------//
 

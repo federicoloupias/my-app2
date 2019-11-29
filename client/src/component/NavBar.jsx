@@ -12,7 +12,9 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {Link} from "react-router-dom";
-import LogOut from './LogOut'
+import LogOut from './LogOut';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   root: {

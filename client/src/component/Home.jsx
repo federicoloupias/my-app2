@@ -17,7 +17,7 @@ class Home extends React.Component{
          <div >
            <button>
              
-           <Link to="/Browsing"><img className="App-button" src={logoButton} alt="logoButton"/></Link>
+           <Link to="/Cities"><img className="App-button" src={logoButton} alt="logoButton"/></Link>
            </button>
    
          </div>
@@ -30,7 +30,6 @@ class Home extends React.Component{
    
         <footer> 
 
-        <Link to="/Cities">cities</Link>
           
         </footer>
         
