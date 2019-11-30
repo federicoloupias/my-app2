@@ -10,10 +10,10 @@ const User = require ('../../models/user');
 // POST all Users
 // api/users
 router.post('/', (req,res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, firstName, lastName, country } = req.body;
 
     // Simple validation
-    if(!name || !email || !password){
+    if(!name || !email || !password || !firstName || !lastName || !country){
         return res.status(400).json({ msg: 'Please enter all fields '});
     }
 
@@ -26,7 +26,10 @@ router.post('/', (req,res) => {
             const newUser = new User ({
                 name,
                 email,
-                password
+                password,
+                firstName,
+                lastName,
+                country
             });
 
             //Create salt & hash

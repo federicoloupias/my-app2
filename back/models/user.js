@@ -15,6 +15,18 @@ let userSchema = new Schema({
       type: String,
       required:true
     },
+    firstName:{
+      type:String,
+      required:true
+    },
+    lastName:{
+      type:String,
+      required:true
+    },
+    country:{
+      type:String,
+      required:true
+    },
     register_date:{
         type:Date,
         default: Date.now

@@ -19,8 +19,12 @@ import { clearErrors } from '../actions/errorsActions';
 class LoginRedux extends Component {
   state = {
     modal: false,
+    username:'',
     email: '',
     password: '',
+    firstName:'',
+    lastName:'',
+    country:'',
     msg: null
   };
 
@@ -91,6 +95,8 @@ class LoginRedux extends Component {
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
+              
+
                 <Label for='email'>Email</Label>
                 <Input
                   type='email'
@@ -110,6 +116,7 @@ class LoginRedux extends Component {
                   className='mb-3'
                   onChange={this.onChange}
                 />
+                
                 <Button color='dark' style={{ marginTop: '2rem' }} block>
                   Login
                 </Button>

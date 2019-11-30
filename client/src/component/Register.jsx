@@ -19,10 +19,14 @@ import { clearErrors } from '../actions/errorsActions';
 class Register extends Component {
   state = {
     modal: false,
-    name: '',
+    name:'',
     email: '',
     password: '',
-    msg: null
+    firstName:'',
+    lastName:'',
+    country:'',
+    msg: null,
+    checkbox: false
   };
 
   static propTypes = {
@@ -51,6 +55,16 @@ class Register extends Component {
     }
   }
 
+  // Habilita el boton registrar cuando el checkbox se acepta
+
+  showRegister = (c) => {
+    if (c!==false) {
+      return <Button color='dark' style={{ marginTop: '2rem' }} block>
+                  Register
+                </Button>
+    }
+  }
+
   toggle = () => {
     // Clear errors
     this.props.clearErrors();
@@ -66,14 +80,20 @@ class Register extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const { name, email, password, firstName, lastName, country, checkbox } = this.state;
 
-    // Create user object
+    //create user object
     const newUser = {
       name,
       email,
-      password
+      password,
+      firstName,
+      lastName,
+      country,
+      checkbox
     };
+
+    console.log(newUser.checkbox)
 
     // Attempt to register
     this.props.register(newUser);
@@ -94,7 +114,7 @@ class Register extends Component {
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for='name'>Name</Label>
+              <Label for='userName'>UserName</Label>
                 <Input
                   type='text'
                   name='name'
@@ -123,9 +143,61 @@ class Register extends Component {
                   className='mb-3'
                   onChange={this.onChange}
                 />
-                <Button color='dark' style={{ marginTop: '2rem' }} block>
-                  Register
-                </Button>
+
+                <Label for='firstName'>First Name</Label>
+                <Input
+                  type='text'
+                  name='firstName'
+                  id='firstName'
+                  placeholder='First Name'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+
+                <Label for='lastName'>Last Name</Label>
+                <Input
+                  type='text'
+                  name='lastName'
+                  id='lastName'
+                  placeholder='Last Name'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+
+<div className="input-group mb-3">
+  <div className="input-group-prepend">
+    <label className="input-group-text" >Country</label>
+  </div>
+  
+  <select className="custom-select" 
+            id="country" 
+            name='country'
+            onChange={this.onChange}>
+  
+      <option defaultValue>Choose Country</option>
+    
+      <option>England</option>
+      <option>France</option>
+      <option>Germany</option>
+      <option>Holand</option>
+      <option>Ireland</option>
+      <option>Spain</option>
+      <option>United State</option>
+  </select>
+</div>
+
+<div>
+
+      <input type="checkbox" 
+      id="checkbox" 
+      name="checkbox" 
+      onChange={this.onChange}
+      /> 
+      <span>I agree to MYtinerary's <a href="#">Terms & Conditions</a></span>
+    
+</div>
+              {this.showRegister(this.state.checkbox)}
+                
               </FormGroup>
             </Form>
           </ModalBody>
