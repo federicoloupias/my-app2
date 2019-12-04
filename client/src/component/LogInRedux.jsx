@@ -15,8 +15,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../actions/authActions';
 import { clearErrors } from '../actions/errorsActions';
+import LogInGoogle from './LogInGoogle';
 
 class LoginRedux extends Component {
+
   state = {
     modal: false,
     username:'',
@@ -53,6 +55,8 @@ class LoginRedux extends Component {
       }
     }
   }
+
+  
 
   toggle = () => {
     // Clear errors
@@ -120,8 +124,11 @@ class LoginRedux extends Component {
                 <Button color='dark' style={{ marginTop: '2rem' }} block>
                   Login
                 </Button>
+                
               </FormGroup>
             </Form>
+           
+          <LogInGoogle />
           </ModalBody>
         </Modal>
       </div>
