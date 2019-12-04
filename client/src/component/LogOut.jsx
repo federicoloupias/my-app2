@@ -15,6 +15,7 @@ static propTypes ={
                 <NavLink onClick={this.props.logout} href="#">
                     Logout
                 </NavLink>
+                
             </Fragment>
         )
     }

@@ -6,7 +6,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCES,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    REGISTER_GOOGLE_SUCCESS
 } from '../actions/types';
 
 const inicialState = {
@@ -50,6 +51,10 @@ export default function (state = inicialState, action) {
                         user: null,
                         isAuthenticated: false,
                         isLoading: false
+                }
+            case REGISTER_GOOGLE_SUCCESS:
+                return{
+                    isAuthenticated: true,
                 }
                 default:
                     return state;

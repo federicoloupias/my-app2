@@ -10,8 +10,11 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCES,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    REGISTER_GOOGLE_SUCCESS
 } from '../actions/types';
+
+import firebase from '../initializers/firebase';
 
 //Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -64,6 +67,13 @@ export const register = ({ name, email, password, firstName, lastName, country }
 // LogOut User
 
 export const logout = () => {
+    firebase.auth().signOut()
+    .then(result => { 
+        console.log(result)
+    }).catch(err =>{
+        console.log(err)
+    })
+
     return{
         type: LOGOUT_SUCCES
     }
@@ -94,6 +104,19 @@ export const login = ({ email, password }) => dispatch => {
             type: LOGIN_FAIL
         });
     });
+}
+
+export const logInGoogle = (user) => dispatch => {
+    if(user){
+        dispatch({
+            type: REGISTER_GOOGLE_SUCCESS
+        });
+    }else{
+        dispatch({
+            type: LOGIN_FAIL
+        });
+    }
+    
 }
 
 
