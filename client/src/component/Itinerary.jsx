@@ -3,7 +3,9 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItineraries } from '../actions/itineraryActions';
 
-import Activity from './Activity'
+import Activity from './Activity';
+
+import FavButton from './FavButton'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -32,7 +34,10 @@ class ItineraryList extends Component{
         <ListGroup>
             {this.props.itineraries.map((itinerary) => (
             <ListGroupItem> 
-              {itinerary.title} 
+              {itinerary.title}
+              <p></p>
+              <FavButton itineraryId = {itinerary._id}/>
+              <p></p>
               <Activity itineraryId = {itinerary._id}/>
             </ListGroupItem>
             

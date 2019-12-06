@@ -2,6 +2,7 @@ export const GET_ITEMS = 'GET_ITEMS';
 export const GET_ITINERARIES = 'GET_ITINERARIES';
 
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
+export const ADD_FAV = 'ADD_FAV';
 
 export const REGISTER_GOOGLE_SUCCESS = 'REGISTER_GOOGLE_SUCCESS';
 

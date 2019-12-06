@@ -27,6 +27,10 @@ let userSchema = new Schema({
       type:String,
       required:true
     },
+    itinerariesFav:{
+       type: Array,
+       ref:'itinerary'
+     },
     register_date:{
         type:Date,
         default: Date.now

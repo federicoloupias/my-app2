@@ -71,4 +71,27 @@ router.post('/', (req,res) => {
 
 })
 
+
+
+router.post('/:emailUser/:itineraryId', (req,res) => {
+
+
+      User.findOneAndUpdate(
+          
+
+        { email : req.params.emailUser }, 
+        { $push: { itinerariesFav: req.params.itineraryId  } },
+       )
+       .then(
+        function(datos){
+            return res.send(datos)
+        }
+    )
+    .catch(err =>{
+        console.log(err);
+    })
+       ;
+     
+})
+
 module.exports = router;
