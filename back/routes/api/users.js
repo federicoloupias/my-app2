@@ -7,6 +7,7 @@ const jwt = require ('jsonwebtoken');
 // User Model
 const User = require ('../../models/user');
 
+
 // POST all Users
 // api/users
 router.post('/', (req,res) => {
@@ -73,12 +74,10 @@ router.post('/', (req,res) => {
 
 
 
+
+
 router.post('/:emailUser/:itineraryId', (req,res) => {
-
-
       User.findOneAndUpdate(
-          
-
         { email : req.params.emailUser }, 
         { $push: { itinerariesFav: req.params.itineraryId  } },
        )
@@ -92,6 +91,22 @@ router.post('/:emailUser/:itineraryId', (req,res) => {
     })
        ;
      
+})
+
+router.delete('/:emailUser/:itineraryIdRemove', (req,res) => {
+    User.findOneAndUpdate(
+      { email : req.params.emailUser }, 
+      { $pull: { itinerariesFav: req.params.itineraryIdRemove  } },
+     )
+     .then(
+      function(datos){
+          return res.send(datos)
+      }
+  )
+  .catch(err =>{
+      console.log(err);
+  });
+   
 })
 
 module.exports = router;

@@ -7,7 +7,7 @@ import {
     LOGOUT_SUCCES,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
-    REGISTER_GOOGLE_SUCCESS
+    REGISTER_GOOGLE_SUCCESS,
 } from '../actions/types';
 
 const inicialState = {
@@ -18,6 +18,7 @@ const inicialState = {
 };
 
 export default function (state = inicialState, action) {
+    console.log(action.payload)
     switch (action.type) {
         case USER_LOADING:
             return {

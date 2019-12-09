@@ -1,5 +1,6 @@
 import {
-    ADD_FAV
+    ADD_FAV,
+    REMOVE_FAV
 } from '../actions/types';
 
 const inicialState = {
@@ -13,6 +14,12 @@ export default function (state = inicialState, action) {
         case ADD_FAV:
             const userId = action.payload._id;
             const itineraryId=action.payload.itinerariesFav
+            return {
+                ...state,
+                user: userId,
+                itineraryId: itineraryId
+            };
+            case REMOVE_FAV:
             return {
                 ...state,
                 user: userId,

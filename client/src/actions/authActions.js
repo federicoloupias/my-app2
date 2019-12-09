@@ -11,7 +11,7 @@ import {
     LOGOUT_SUCCES,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
-    REGISTER_GOOGLE_SUCCESS
+    REGISTER_GOOGLE_SUCCESS,
 } from '../actions/types';
 
 import firebase from '../initializers/firebase';
@@ -118,6 +118,7 @@ export const logInGoogle = (user) => dispatch => {
     }
     
 }
+
 
 
 // Setup config / headers and token

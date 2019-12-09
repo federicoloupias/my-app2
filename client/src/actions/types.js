@@ -3,6 +3,9 @@ export const GET_ITINERARIES = 'GET_ITINERARIES';
 
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const ADD_FAV = 'ADD_FAV';
+export const RELOAD_USER = 'RELOAD_USER';
+export const REMOVE_FAV = 'REMOVE_FAV';
+
 
 export const REGISTER_GOOGLE_SUCCESS = 'REGISTER_GOOGLE_SUCCESS';
 

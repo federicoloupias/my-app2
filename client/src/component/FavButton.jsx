@@ -2,38 +2,85 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addFav } from '../actions/userActions';
+import { addFav, removeFav } from '../actions/userActions';
+import { loadUser } from '../actions/authActions';
+
 
 
 class FavButton extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      favoritos:[]
+    }
+  
+
+  }
 
     static propTypes = {
-        addFav: PropTypes.func.isRequired
+        addFav: PropTypes.func.isRequired,
+        removeFav: PropTypes.func.isRequired,
+        loadUser: PropTypes.func.isRequired
       };
+
+      async componentDidMount(){
+
+        await this.props.loadUser()
+
+        this.setState({
+          favoritos : this.props.user.itinerariesFav
+        })
+
+      }
    
 
-    agregarFav (){
-    
+    favActions (){
+
+        this.props.loadUser()
+        this.setState({
+          favoritos : this.props.user.itinerariesFav
+        })
+
         const email = this.props.user.email;
         const itinerayId = this.props.itineraryId;
     
-        
-    
-        // Attempt to add Favourite
-        this.props.addFav(email, itinerayId);
-      };
-    
+        console.log(this.props.user.itinerariesFav.length)
 
+        if(!this.props.user.itinerariesFav.includes(itinerayId)){
+          console.log("se agrego el favorito")
+          this.props.addFav(email, itinerayId);
+
+        }else{
+          console.log("Se elimino el favorito")
+          this.props.removeFav(email,itinerayId)
+        }
+        
+        this.props.loadUser()
+
+    };
+    
+showButtonFav(){
+  
+  const itinerayId = this.props.itineraryId;
+
+  if(!this.state.favoritos.includes(itinerayId)){
+    return <Button outline color="success" size="sm" onClick={this.favActions.bind(this)}>
+            Add Favourite
+        </Button>
+  }else{
+    return <Button size="sm" color="success"  onClick={this.favActions.bind(this)}>
+            Favourite
+        </Button>
+  }
+}
 
     render(){
 
-      //console.log(this.props.itineraryId)
+      console.log(this.state.favoritos)
 
         return(
-
-        <Button olor="primary" size="sm" onClick={this.agregarFav.bind(this)}>
-            Favourite
-        </Button>
+          this.showButtonFav()
+        
         );
     }
 }
@@ -55,4 +102,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { addFav })(FavButton);
+    { addFav, removeFav, loadUser })(FavButton);
