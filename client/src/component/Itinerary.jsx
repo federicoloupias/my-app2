@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getItineraries } from '../actions/itineraryActions';
 
 import Activity from './Activity';
+import Coment from './Coment';
 
 import FavButton from './FavButton'
 
@@ -33,12 +34,13 @@ class ItineraryList extends Component{
 
         <ListGroup>
             {this.props.itineraries.map((itinerary) => (
-            <ListGroupItem> 
+            <ListGroupItem key= {itinerary._id}> 
               {itinerary.title}
               <p></p>
               <FavButton itineraryId = {itinerary._id}/>
               <p></p>
               <Activity itineraryId = {itinerary._id}/>
+              <Coment itineraryId = {itinerary._id}/>
             </ListGroupItem>
             
             ))}

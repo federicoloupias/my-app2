@@ -122,6 +122,44 @@ app.get('/api/itinerary', cors(), function(req, res) {
 })
 
 
+
+
+
+
+
+
+app.post('/api/itinerary/:itineraryId', cors(), function(req, res) {
+    let user =  req.body.userId
+    let coment =  req.body.coment
+
+    console.log(req.body)
+    
+    ItinerayModel.findOneAndUpdate(
+        { _id : req.params.itineraryId },
+        { $push: {
+            coments:{
+                userId:user,
+                comentario: coment
+                }
+        }},
+        {new:true}
+    )
+    .then(function(datos){
+        return res.send(datos)
+        }   
+    )
+    .catch(err =>{
+        console.log(err);
+    })
+  })
+
+
+
+
+
+  
+
+
 //-------------------------------------------------------//
 
 // -------------------  Activities  --------------------------//

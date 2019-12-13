@@ -18,7 +18,6 @@ const inicialState = {
 };
 
 export default function (state = inicialState, action) {
-    console.log(action.payload)
     switch (action.type) {
         case USER_LOADING:
             return {

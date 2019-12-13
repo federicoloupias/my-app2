@@ -27,24 +27,27 @@ class FavButton extends Component{
 
         await this.props.loadUser()
 
-        this.setState({
-          favoritos : this.props.user.itinerariesFav
-        })
+        
+        this.setearFavourites()
 
       }
    
+    setearFavourites() {
+      this.setState({
+        favoritos : this.props.user.itinerariesFav
+      })
+    }
+      
 
     favActions (){
 
         this.props.loadUser()
-        this.setState({
-          favoritos : this.props.user.itinerariesFav
-        })
+       
+        this.setearFavourites()
 
         const email = this.props.user.email;
         const itinerayId = this.props.itineraryId;
     
-        console.log(this.props.user.itinerariesFav.length)
 
         if(!this.props.user.itinerariesFav.includes(itinerayId)){
           console.log("se agrego el favorito")
@@ -56,7 +59,10 @@ class FavButton extends Component{
         }
         
         this.props.loadUser()
+       
+        this.setearFavourites()
 
+        console.log(this.props.user.itinerariesFav.length)
     };
     
 showButtonFav(){
@@ -75,8 +81,6 @@ showButtonFav(){
 }
 
     render(){
-
-      console.log(this.state.favoritos)
 
         return(
           this.showButtonFav()

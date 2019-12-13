@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Button, CardBody, Card  } from 'reactstrap';
+import { Collapse, Button, CardBody, Card, CardTitle  } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getActivities } from '../actions/activityActions';
 
@@ -19,7 +19,6 @@ class Activity extends Component{
     this.setState({
       activities: this.props.activities
     })
-    console.log(this.props.activities)
   }
 
   toggle = () => {
@@ -31,12 +30,12 @@ class Activity extends Component{
   render(){
     return(
       <div>
-          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
+          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Show activities</Button>
           <Collapse isOpen={this.state.isOpen}>
         <Card>
           <CardBody>
          {this.state.activities.map((activity) =>{
-         return<p>{activity.title}</p>
+         return <CardTitle key={activity._id}>{activity.title}</CardTitle>       
   })}
           </CardBody>
         </Card>

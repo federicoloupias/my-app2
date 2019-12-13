@@ -3,6 +3,16 @@ let Schema = mongoose.Schema;
 
 //create Schema
 
+let comentSchema = new Schema({
+  userId:{
+    type: Schema.Types.ObjectId,
+     ref:'user'
+   },
+   comentario:{
+     type: String
+   }
+})
+
 let ItinerarySchema = new Schema({
   title: {
     type: String
@@ -22,6 +32,7 @@ let ItinerarySchema = new Schema({
   hashtags: {
     type: Array
   },
+  coments: [comentSchema],
   cityId:{
    type: Schema.Types.ObjectId,
     ref:'city'
