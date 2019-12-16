@@ -124,7 +124,20 @@ app.get('/api/itinerary', cors(), function(req, res) {
 
 
 
-
+app.get("/api/itinerary/coments/:itineraryId", cors(), (req, res) => {
+    
+    
+      ItinerayModel.findById(
+        { _id : req.params.itineraryId }
+      )
+    .then(function(datos){
+        return res.send(datos.coments)
+        }   
+    )
+    .catch(err =>{
+        console.log(err);
+    })
+  })
 
 
 
@@ -157,7 +170,7 @@ app.post('/api/itinerary/:itineraryId', cors(), function(req, res) {
 
 //------Borrar Un Coment-----------//
 
-app.delete('/api/:itineraryId/:comentId', (req,res) => {
+app.delete('/api/delete/:itineraryId/:comentId', (req,res) => {
     const comentId = req.params.comentId
     console.log(req.params)
     ItinerayModel.findOneAndUpdate(
@@ -168,6 +181,7 @@ app.delete('/api/:itineraryId/:comentId', (req,res) => {
             _id:comentId
             }
     }},
+    {new:true}
      )
      .then(
       function(datos){
@@ -179,7 +193,39 @@ app.delete('/api/:itineraryId/:comentId', (req,res) => {
   });
    
 })
+
+
+//-------- Modificar Un Coment -----------//
   
+
+app.put('/api/edit/:itineraryId/', (req,res) => {
+    const comentId = req.body.comentId
+    const coment = req.body.newComent
+    const user = req.body.userId
+    console.log(req.body)
+
+    ItinerayModel.findOneAndUpdate(
+        { _id : req.params.itineraryId,
+        }, 
+      { $set: {
+        coments:{
+            _id : comentId,
+            userId: user,
+            comentario : coment
+            }
+    }},
+    {new:true}
+     )
+     .then(
+      function(datos){
+          return res.send(datos)
+      }
+  )
+  .catch(err =>{
+      console.log(err);
+  });
+   
+})
 
 
 //-------------------------------------------------------//

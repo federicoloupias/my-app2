@@ -5,6 +5,7 @@ import errorReducer from './errorReducer';
 import authReducer from './authReducer';
 import activityReducer from './activityReducer';
 import userReducer from './userReducer';
+import commentsReducer from './commentsReducer';
 
 const rootReducer = combineReducers({
     item : itemReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     error: errorReducer,
     auth: authReducer,
     activities: activityReducer,
-    userFav : userReducer
+    userFav : userReducer,
+    comments : commentsReducer
 })
 export default rootReducer

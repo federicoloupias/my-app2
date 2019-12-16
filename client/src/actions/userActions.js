@@ -3,7 +3,8 @@ import {
     ADD_FAV,
     REMOVE_FAV,
     ADD_COMENT,
-    REMOVE_COMENT
+    REMOVE_COMENT,
+    EDIT_COMENT
 } from '../actions/types';
 
 export const addFav = (email, itineraryId) => async (dispatch) => {
@@ -54,9 +55,25 @@ export const addComent = ( itineraryId, userId, coment ) => async dispatch => {
 export const borrarComent = ( itineraryId, comentId ) => async dispatch => {
     
 
-    await axios.delete('http://localhost:8080/api/'+itineraryId+'/'+comentId)
+    await axios.delete('http://localhost:8080/api/delete'+itineraryId+'/'+comentId)
     .then(res => dispatch ({
         type: REMOVE_COMENT,
+        payload: res.data
+    }))
+    .catch(err => {
+        console.log(err)
+    });
+}
+
+export const editarComent = ( itineraryId, comentId, newComent, userId ) => async dispatch => {
+    
+
+    const body = { comentId, newComent, userId }
+
+
+    await axios.put('http://localhost:8080/api/edit'+itineraryId, body)
+    .then(res => dispatch ({
+        type: EDIT_COMENT,
         payload: res.data
     }))
     .catch(err => {

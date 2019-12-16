@@ -33,9 +33,11 @@ class FavButton extends Component{
       }
    
     setearFavourites() {
+      if(this.props.user.itinerariesFav!==null){
       this.setState({
         favoritos : this.props.user.itinerariesFav
       })
+      }
     }
       
 

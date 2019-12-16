@@ -8,6 +8,9 @@ export const REMOVE_FAV = 'REMOVE_FAV';
 
 export const ADD_COMENT = 'ADD_COMENT';
 export const REMOVE_COMENT = 'REMOVE_COMENT';
+export const EDIT_COMENT = 'EDIT_COMENT';
+
+export const GET_COMMENTS = 'GET_COMMENTS';
 
 
 export const RELOAD_USER = 'RELOAD_USER';

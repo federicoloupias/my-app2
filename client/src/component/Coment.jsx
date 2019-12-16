@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button, UncontrolledCollapse, CardBody, Card  } from 'reactstrap';
 import { addComent,borrarComent } from '../actions/userActions';
+import {getComments} from '../actions/commentsActions'
 
 import { connect } from 'react-redux';
+import ShowComments from './ShowComments';
 
 
 class Coment extends Component{
@@ -10,8 +12,14 @@ class Coment extends Component{
     super(props)
     this.state = {
         coment : '',
-        comentarios:[{_id:'5df6c8d559c4ba2c3408c75d', comentario:'estas'}]
+        comentarios:[]
       }
+}
+
+async componentDidMount(){
+  await this.props.getComments(this.props.itineraryId)
+  this.setState({comentarios: this.props.comments.comments})
+  console.log(this.state.comentarios)
 }
     
 
@@ -34,6 +42,11 @@ class Coment extends Component{
         this.props.borrarComent(itineraryId,comentId)
       }
 
+      setComents = () => {
+        console.log(this.props.itinerarios) 
+
+      }
+
 
     render(){
 
@@ -45,7 +58,7 @@ class Coment extends Component{
             <FormGroup>
                 <Label for="exampleEmail">Coments</Label>
                 <Input type='text'
-                  name='coment'
+                  name='value'
                   id='coment'
                   placeholder='Add Coment for this itinerary !'
                   className='mb-3'
@@ -56,22 +69,12 @@ class Coment extends Component{
                 </Button>
             </FormGroup>
         </Form>
+        
+    {this.state.comentarios.map((coment, i) => (
+      
+      <ShowComments com={coment} comentId={coment._id} index={i} id={this.props.id} key={i} />
 
-        <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-      Mostrar Todos los Comentarios
-    </Button>
-    <UncontrolledCollapse toggler="#toggler">
-    {this.state.comentarios.map((coment) => (
-      <Card key= {coment._id}>
-        <CardBody key= {coment._id}> 
-              {coment.comentario}
-
-        <Button outline color="info" onClick={this.editarComent(this.props.itineraryId,coment._id)}>Editar</Button>
-        <Button outline color="danger" onClick={this.borrarComent(this.props.itineraryId,coment._id)}>Eliminar</Button>
-        </CardBody>
-      </Card>
       ))}
-    </UncontrolledCollapse>
 
         </div>
         );
@@ -81,7 +84,9 @@ class Coment extends Component{
 const mapStateToProps = (state) => {
  
     return {
-      user: state.auth.user
+      user: state.auth.user,
+      itinerarios : state.itinerario.itineraries,
+      comments: state.comments
     }
   }
 
@@ -89,5 +94,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { addComent, borrarComent }
+    { addComent, borrarComent, getComments }
   )(Coment);
