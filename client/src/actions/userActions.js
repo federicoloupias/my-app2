@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
     ADD_FAV,
     REMOVE_FAV,
-    ADD_COMENT
+    ADD_COMENT,
+    REMOVE_COMENT
 } from '../actions/types';
 
 export const addFav = (email, itineraryId) => async (dispatch) => {
@@ -48,7 +49,17 @@ export const addComent = ( itineraryId, userId, coment ) => async dispatch => {
     .catch(err => {
         console.log(err)
     });
+}
 
+export const borrarComent = ( itineraryId, comentId ) => async dispatch => {
     
 
+    await axios.delete('http://localhost:8080/api/'+itineraryId+'/'+comentId)
+    .then(res => dispatch ({
+        type: REMOVE_COMENT,
+        payload: res.data
+    }))
+    .catch(err => {
+        console.log(err)
+    });
 }

@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button  } from 'reactstrap';
-import { addComent } from '../actions/userActions';
+import { Form, FormGroup, Label, Input, Button, UncontrolledCollapse, CardBody, Card  } from 'reactstrap';
+import { addComent,borrarComent } from '../actions/userActions';
 
 import { connect } from 'react-redux';
 
 
 class Coment extends Component{
-    state = {
-        coment : ''
-      };
-
+  constructor(props) {
+    super(props)
+    this.state = {
+        coment : '',
+        comentarios:[{_id:'5df6c8d559c4ba2c3408c75d', comentario:'estas'}]
+      }
+}
+    
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -23,12 +27,20 @@ class Coment extends Component{
         
       };
 
+      editarComent  = (itineraryId, comentId)  =>  {
+      }
+      borrarComent =(itineraryId, comentId)  =>  {
+      
+        this.props.borrarComent(itineraryId,comentId)
+      }
+
 
     render(){
 
-      
 
         return(
+        <div>
+          
         <Form onSubmit={this.onSubmit}>
             <FormGroup>
                 <Label for="exampleEmail">Coments</Label>
@@ -45,6 +57,23 @@ class Coment extends Component{
             </FormGroup>
         </Form>
 
+        <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
+      Mostrar Todos los Comentarios
+    </Button>
+    <UncontrolledCollapse toggler="#toggler">
+    {this.state.comentarios.map((coment) => (
+      <Card key= {coment._id}>
+        <CardBody key= {coment._id}> 
+              {coment.comentario}
+
+        <Button outline color="info" onClick={this.editarComent(this.props.itineraryId,coment._id)}>Editar</Button>
+        <Button outline color="danger" onClick={this.borrarComent(this.props.itineraryId,coment._id)}>Eliminar</Button>
+        </CardBody>
+      </Card>
+      ))}
+    </UncontrolledCollapse>
+
+        </div>
         );
     }
 }
@@ -60,5 +89,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { addComent }
+    { addComent, borrarComent }
   )(Coment);

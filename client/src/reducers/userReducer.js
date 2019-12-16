@@ -1,7 +1,8 @@
 import {
     ADD_FAV,
     REMOVE_FAV,
-    ADD_COMENT
+    ADD_COMENT,
+    REMOVE_COMENT
 } from '../actions/types';
 
 const inicialState = {
@@ -12,30 +13,15 @@ const inicialState = {
 export default function (state = inicialState, action) {
     switch (action.type) {
         case ADD_FAV:
+        case REMOVE_FAV:
+        case ADD_COMENT:
+        case REMOVE_COMENT:
             const userId = action.payload._id;
             const itineraryId=action.payload.itinerariesFav
             return {
                 ...state,
                 user: userId,
                 itineraryId: itineraryId
-            };
-            case REMOVE_FAV:
-                
-            const usId = action.payload._id;
-            const itinId=action.payload.itinerariesFav
-            return {
-                ...state,
-                user: usId,
-                itineraryId: itinId
-            };
-            case ADD_COMENT:
-                
-            const user = action.payload._id;
-            const itinerId=action.payload.itinerariesFav
-            return {
-                ...state,
-                user: user,
-                itineraryId: itinerId
             };
                 default:
                     return state;

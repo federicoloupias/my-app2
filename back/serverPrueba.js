@@ -155,8 +155,30 @@ app.post('/api/itinerary/:itineraryId', cors(), function(req, res) {
 
 
 
+//------Borrar Un Coment-----------//
 
-
+app.delete('/api/:itineraryId/:comentId', (req,res) => {
+    const comentId = req.params.comentId
+    console.log(req.params)
+    ItinerayModel.findOneAndUpdate(
+        { _id : req.params.itineraryId,
+        }, 
+      { $pull: {
+        coments:{
+            _id:comentId
+            }
+    }},
+     )
+     .then(
+      function(datos){
+          return res.send(datos)
+      }
+  )
+  .catch(err =>{
+      console.log(err);
+  });
+   
+})
   
 
 
