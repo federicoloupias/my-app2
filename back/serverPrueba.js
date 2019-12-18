@@ -198,22 +198,23 @@ app.delete('/api/delete/:itineraryId/:comentId', (req,res) => {
 //-------- Modificar Un Coment -----------//
   
 
-app.put('/api/edit/:itineraryId/', (req,res) => {
-    const comentId = req.body.comentId
-    const coment = req.body.newComent
+app.put('/api/edit/:itineraryId', (req,res) => {
+    const i = req.body.i
+    const coment = req.body.coment
     const user = req.body.userId
+    const comentId = req.body.comentId
     console.log(req.body)
+    console.log(req.params.itineraryId)
 
-    ItinerayModel.findOneAndUpdate(
-        { _id : req.params.itineraryId,
-        }, 
-      { $set: {
-        coments:{
+    ItinerayModel.findByIdAndUpdate(
+        req.params.itineraryId,
+
+      { ['coments.'+i]: {
             _id : comentId,
             userId: user,
             comentario : coment
             }
-    }},
+    },
     {new:true}
      )
      .then(
@@ -226,6 +227,11 @@ app.put('/api/edit/:itineraryId/', (req,res) => {
   });
    
 })
+
+
+
+
+
 
 
 //-------------------------------------------------------//

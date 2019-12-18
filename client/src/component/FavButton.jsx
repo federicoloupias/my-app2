@@ -27,15 +27,17 @@ class FavButton extends Component{
 
         await this.props.loadUser()
 
+        console.log('user: ', this.props.usuario);
+        
         
         this.setearFavourites()
 
       }
    
     setearFavourites() {
-      if(this.props.user.itinerariesFav!==null){
+      if(this.props.usuario.itinerariesFav!==null){
       this.setState({
-        favoritos : this.props.user.itinerariesFav
+        favoritos : this.props.usuario.itinerariesFav
       })
       }
     }
@@ -98,6 +100,7 @@ showButtonFav(){
 
 
 const mapStateToProps = (state) => {
+  
  
   return {
     user: state.auth.user

@@ -37,7 +37,7 @@ class ItineraryList extends Component{
             <ListGroupItem key= {itinerary._id}> 
               {itinerary.title}
               <p></p>
-              <FavButton itineraryId = {itinerary._id}/>
+              <FavButton itineraryId = {itinerary._id} usuario={this.props.user}/>
               <p></p>
               <Activity itineraryId = {itinerary._id}/>
               <Coment itineraryId = {itinerary._id}/>
@@ -57,8 +57,9 @@ class ItineraryList extends Component{
 
 
 const mapStateToProps = (state) => {
- 
+ console.log(state)
   return {
+    user: state.auth.user,
     itineraries: state.itinerario.itineraries
   }
 }

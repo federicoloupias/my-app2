@@ -24,7 +24,7 @@ async componentDidMount(){
     
 
     onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ coment: e.target.value });
       };
 
 
@@ -35,12 +35,6 @@ async componentDidMount(){
         
       };
 
-      editarComent  = (itineraryId, comentId)  =>  {
-      }
-      borrarComent =(itineraryId, comentId)  =>  {
-      
-        this.props.borrarComent(itineraryId,comentId)
-      }
 
       setComents = () => {
         console.log(this.props.itinerarios) 
@@ -69,13 +63,17 @@ async componentDidMount(){
                 </Button>
             </FormGroup>
         </Form>
-        
+        <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
+                    Mostrar Todos los Comentarios
+            </Button>
+        <UncontrolledCollapse toggler="#toggler">
     {this.state.comentarios.map((coment, i) => (
       
-      <ShowComments com={coment} comentId={coment._id} index={i} id={this.props.id} key={i} />
+      <ShowComments com={coment} comentId={coment._id} index={i} id={this.props.itineraryId} key={i} />
 
       ))}
 
+</UncontrolledCollapse>
         </div>
         );
     }

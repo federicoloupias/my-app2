@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import { Button, UncontrolledCollapse, CardBody, Card  } from 'reactstrap';
 
+import {getComments} from '../actions/commentsActions'
 
 class ShowComments extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class ShowComments extends React.Component {
 
         this.state = {
             value: '',
-            comment: props.com,
+            comment: this.props.com,
             i: props.index,
             toUpdate: false,
             isEliminated: false
@@ -28,27 +29,30 @@ class ShowComments extends React.Component {
     submitUpdate = async (e) => {
         e.preventDefault();
         const body = {
-            user: this.props.user._id, 
+            userId: this.props.user._id, 
             coment: this.state.value,
-            i: this.state.i
+            i: this.state.i,
+            comentId: this.props.comentId
         }
 
-        await axios.put(`http://localhost:8080/api/edit/${this.props.itineraryId}`, body)
+        await axios.put(`http://localhost:8080/api/edit/${this.props.id}`, body)
             .then(res => {
                 return res
             })
             .then(data => {
-                this.setState({comment: data.data[this.state.i]})
-            })
+                this.setState({comment: data.data.coments[this.state.i]})
+            }
+            )
             .catch(e => {
                 console.log(e)
             })
-        this.setState({toUpdate: false})        
+        this.setState({toUpdate: false})  
+              
     }
 
     handleDelete = () => {
        
-        axios.put(`http://localhost:8080//api/delete/${this.props.itineraryId}/${this.props.comentId}`)
+        axios.delete(`http://localhost:8080/api/delete/${this.props.id}/${this.props.comentId}`)
 
         this.setState({isEliminated: true})
     }
@@ -56,19 +60,49 @@ class ShowComments extends React.Component {
     render(){
         return (
         <div>
-            <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-                    Mostrar Todos los Comentarios
-            </Button>
+           
+            {this.state.isEliminated ? 
+                <div >
+                    <p>Deleted</p>
+                </div>
+                :
+                this.state.toUpdate ? 
+                <div>
+                        <form onSubmit={this.submitUpdate} className="editForm">
+                            <input 
+                                type="text" 
+                                value={this.state.value} 
+                                placeholder={this.state.comment.comentario}
+                                onChange={this.handleChange} 
+                                className="editInput">
+                            </input>
+                            <input type="submit" value="Update"></input>
+                        </form>
+                    </div>
 
-            <UncontrolledCollapse toggler="#toggler">
+                    :
                     <Card key={this.props.key}>
                         <CardBody>
                             {this.state.comment.comentario}
+                             {this.props.user._id === this.props.com.userId ?
+                  
+                                <div>
+                            <Button outline color="warning" onClick={this.handleUpdate}>Editar</Button>
+                        <Button outline color="danger" onClick={this.handleDelete} >Eliminar</Button>
+                            </div>
+                                :
+
+                                <div>
+
+                                </div>
+    }
                         </CardBody>
+                        
+                         
                     </Card>
-            </UncontrolledCollapse>
+    }
         </div>
-            )     
+    )     
     }
 }
 
